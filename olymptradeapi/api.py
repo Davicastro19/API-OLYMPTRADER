@@ -1,5 +1,4 @@
-from olymptradeapi.get_session import get_session
-from olymptradeapi.expiration import get_expiration_time
+#SEGUE PARTE DO CODIGO NÃO FUNCIONA SE N COMPRAR A COMPLETO
 from olymptradeapi.constants import ACTIVES, REVERSE
 from threading import Thread
 import ssl, json, time, requests, shortuuid, websocket
@@ -20,14 +19,9 @@ class OlympTradeAPI:
         print(error)
         self.connectedStatus = False
         self.check_websocket_if_connect = False
-        self.check_websocket_if_error = True
-        self.websocket_error_reason = error
 
     def on_close(self, ws, close_status_code, close_msg):
         print(f'closed {close_status_code} {close_msg}')
-        self.check_websocket_if_connect = False
-        self.connectedStatus = False
-        self.reconnect()
     
     def on_open(self, ws):
         self.check_websocket_if_connect = True
@@ -39,28 +33,7 @@ class OlympTradeAPI:
         for message in data:
             #print(message)
             if message['e'] == 10:
-                id = message['uuid']
-                self.candles[id] = None if 'err' in message else message['d'][0]['candles']
-            elif message['e'] == 21:
-                for realtime_order in message['d']:
-                    id = realtime_order['id']
-                    self.realtime_order[id] = realtime_order
-            elif message['e'] == 23:
-                uuid = message['uuid']
-                message = message['d'][0] if not 'err' in message else message['err'][0]
-                self.orders[uuid] = message
-            elif message['e'] == 26:
-                for orders_close in message['d']:
-                    self.orders_close[orders_close['id']] = orders_close
-            elif message['e'] == 54:
-                self.balance = message['d']
-            elif message['e'] == 74:
-                for asset in message['d']:
-                    locked = True if asset['locked'] == False else False
-                    active = REVERSE[asset['id']] if asset['id'] in REVERSE else asset['id']
-                    active = active.replace('_', '-')
-                    self.instruments['turbo'][active] = {'open': [locked, 100 - asset['winperc']]}
-                    self.instruments['binary'][active] = {'open': [locked, 100 - asset['winperc']]}
+           ctive] = {'open': [locked, 100 - asset['winperc']]}
                     self.instruments['digital'][active] = {'open': [locked, asset['winperc']]}
             elif message['e'] == 72:
                 for asset in message['d']:
@@ -84,16 +57,7 @@ class OlympTradeAPI:
     
     def clear_alerts(self):
         self.alerts = None
-        data = [{"t":2,"e":98,"uuid":"LAJXEI79ZPT0FBH2Q","d":[310,311,312,313]}]
-        self.send_websocket_request(data)
-
-        data = [{"t":2,"e":312,"uuid":"LAJXL94BNIT0GQXOB6"}]
-        self.send_websocket_request(data)
-
-        while self.alerts is None:
-            pass
-        
-        for alert in self.alerts:
+       
             self.delete_alert(alert['id'])
             self.alerts.remove(alert)
         
