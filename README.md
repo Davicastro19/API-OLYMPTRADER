@@ -9,6 +9,14 @@ A API está disponível por R$700,00.
 ## Contato
 
 Para mais informações ou suporte, entre em contato via [Telegram](https://t.me/reactdavicastro).
+
+## Informações Importantes
+
+- A biblioteca utiliza o serviço 2Captcha para obter o token de acesso. Certifique-se de ter saldo em sua conta no 2Captcha e de inserir o seu token corretamente.
+  
+- Para que a API funcione corretamente, a conta na Olymp Trade deve possuir apenas duas carteiras: a demo e a real. Caso haja qualquer outra carteira, ela deve ser excluída.
+  
+- Um saldo mínimo de R$15,00 na 2Captcha é suficiente para a operação da biblioteca.
 ## Pré-requisitos
 Certifique-se de ter instalado as seguintes dependências:
 
