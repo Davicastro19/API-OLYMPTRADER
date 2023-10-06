@@ -2,8 +2,14 @@
 
 Uma biblioteca Python fácil de usar para integrar-se com a [Olymp Trade](https://olymptrade.com/pt-br).
 
-## Pré-requisitos
+## Valor
 
+A API está disponível por R$700,00. 
+
+## Contato
+
+Para mais informações ou suporte, entre em contato via [Telegram](https://t.me/reactdavicastro).
+## Pré-requisitos
 Certifique-se de ter instalado as seguintes dependências:
 
 ```bash
