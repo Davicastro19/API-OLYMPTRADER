@@ -4,7 +4,7 @@ Uma biblioteca Python fácil de usar para integrar-se com a [Olymp Trade](https:
 
 ## Valor
 
-A API está disponível por R$400,00. 
+A API está disponível por R$500,00. 
 
 ## Contato
 
